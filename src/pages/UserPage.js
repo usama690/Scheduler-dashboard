@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // @mui
 import {
   Card,
@@ -23,6 +23,7 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
+import { useLocation } from 'react-router-dom';
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
@@ -88,6 +89,8 @@ export default function UserPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const location = useLocation()
+
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
@@ -146,6 +149,12 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
+  let username; 
+  if (location.pathname === '/dashboard/admins') username = 'Admins'
+  if (location.pathname === '/dashboard/teachers') username = 'Teachers'
+  if (location.pathname === '/dashboard/students') username = 'Students'
+
+  console.log(location.pathname,'my name')
   return (
     <>
       <Helmet>
@@ -155,10 +164,10 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            {username}
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            New {username}
           </Button>
         </Stack>
 

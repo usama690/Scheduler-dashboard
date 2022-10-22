@@ -1,4 +1,5 @@
 // component
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import SvgColor from '../../../components/svg-color';
 
 // ----------------------------------------------------------------------
@@ -12,30 +13,46 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
-    path: '/dashboard/user',
+    title: 'Admins',
+    path: '/dashboard/admins',
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: icon('ic_cart'),
+    title: 'Teachers',
+    path: '/dashboard/teachers',
+    icon: icon('ic_user'),
   },
   {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: icon('ic_blog'),
+    title: 'Students',
+    path: '/dashboard/students',
+    icon: icon('ic_user'),
+  },
+  // {
+  //   title: 'product',
+  //   path: '/dashboard/products',
+  //   icon: icon('ic_cart'),
+  // },
+  // {
+  //   title: 'blog',
+  //   path: '/dashboard/blog',
+  //   icon: icon('ic_blog'),
+  // },
+  {
+    title: 'Events',
+    path: '/dashboard/events',
+    icon: <EventNoteIcon />,
   },
   {
     title: 'login',
     path: '/login',
     icon: icon('ic_lock'),
   },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
-  },
+  // {
+  //   title: 'Not found',
+  //   path: '/404',
+  //   icon: icon('ic_disabled'),
+  // },
+  
 ];
 
 export default navConfig;
