@@ -42,6 +42,8 @@ Header.propTypes = {
   onOpenNav: PropTypes.func,
 };
 
+
+
 export default function Header({ onOpenNav }) {
   return (
     <StyledRoot>
@@ -68,7 +70,7 @@ export default function Header({ onOpenNav }) {
             sm: 1,
           }}
         >
-          <LanguagePopover />
+          {/* <LanguagePopover /> */}
           <NotificationsPopover />
           <AccountPopover />
         </Stack>
