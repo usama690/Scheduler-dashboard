@@ -54,7 +54,8 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        <Logo />
+        {/* <Logo /> */}
+        <img src="../../../../assets/icons/navbar/logo.jpeg" alt="logo"  style={{width:'50px',height:'50px'}}/>
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
