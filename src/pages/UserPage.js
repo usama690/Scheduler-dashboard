@@ -73,6 +73,122 @@ function applySortFilter(array, comparator, query) {
   }
   return stabilizedThis.map((el) => el[0]);
 }
+const teachersList =[ 
+  {
+  id: 1,
+  name:"Dr Shahnawaz Qureshi" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+  {
+  id: 2,
+  name:"Dr Ahmed" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+  {
+  id: 3,
+  name:"Dr Umer Aftab" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+  {
+  id: 4,
+  name:"Mr Yousaf " ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+  {
+  id: 5,
+  name:"Dr Affan Rauf" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+  {
+  id: 6,
+  name:"Dr  Shahzad Sarfraz " ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+  {
+  id: 7,
+  name:"Mr Adeel Cheema" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "teacher"
+},
+]
+const studentList =[ 
+  {
+  id: 1,
+  name:"Afaq Bukhari " ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+  {
+  id: 2,
+  name:"Jamshaid" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+  {
+  id: 3,
+  name:"Zain Raza" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+  {
+  id: 4,
+  name:"Saud Khadim" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+  {
+  id: 5,
+  name:"Hassan Ashas" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+  {
+  id: 6,
+  name:"Talha Ayub" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+  {
+  id: 7,
+  name:"Mr Adeel Cheema" ,
+  isVerified: true,
+  company:'company',
+  status: "active",
+  role: "student"
+},
+]
 
 export default function UserPage() {
   const [open, setOpen] = useState(null);
@@ -145,15 +261,15 @@ export default function UserPage() {
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
-
-  const isNotFound = !filteredUsers.length && !!filterName;
-
+  
+  
   let username; 
   if (location.pathname === '/dashboard/admins') username = 'Admins'
   if (location.pathname === '/dashboard/teachers') username = 'Teachers'
   if (location.pathname === '/dashboard/students') username = 'Students'
-
+  
+  const filteredUsers = applySortFilter(username === 'Teachers' ? teachersList : studentList, getComparator(order, orderBy), filterName);
+  const isNotFound = !filteredUsers.length && !!filterName;
   console.log(location.pathname,'my name')
   return (
     <>
@@ -161,7 +277,10 @@ export default function UserPage() {
         <title> User | Minimal UI </title>
       </Helmet>
 
-      <Container>
+     { username === 'Admins' ? 
+     null :
+     <>
+     <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             {username}
@@ -188,7 +307,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, name, role, status, isVerified,company } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -199,7 +318,7 @@ export default function UserPage() {
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            {/* <Avatar alt={name} src={avatarUrl} /> */}
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
@@ -298,6 +417,7 @@ export default function UserPage() {
           Delete
         </MenuItem>
       </Popover>
+      </> }
     </>
   );
 }
